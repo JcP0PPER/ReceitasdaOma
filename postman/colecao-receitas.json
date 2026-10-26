@@ -1,0 +1,181 @@
+{
+  "info": {
+    "name": "Receitas da Oma",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Criar coleção",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic YWRtaW46c2VjcmV0",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/receitas",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["receitas"]
+        }
+      }
+    },
+    {
+      "name": "Listar receitas",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic YWRtaW46c2VjcmV0",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/receitas?pagesize=100",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["receitas"],
+          "query": [
+            {
+              "key": "pagesize",
+              "value": "100"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Criar receita",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic YWRtaW46c2VjcmV0",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Apfelstrudel\",\n  \"categoria\": \"Doce\",\n  \"pais\": \"Alemanha\",\n  \"ingredientes\": [\"maçã\", \"canela\", \"farinha\", \"manteiga\", \"açúcar\"],\n  \"tempoPreparo\": 60,\n  \"dificuldade\": \"Média\",\n  \"nota\": 4.8,\n  \"favorito\": true,\n  \"comentario\": \"Receita clássica da família.\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/receitas",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["receitas"]
+        }
+      }
+    },
+    {
+      "name": "Buscar receita por id",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic YWRtaW46c2VjcmV0",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/receitas/:id",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["receitas", ":id"]
+        }
+      }
+    },
+    {
+      "name": "Atualizar receita inteira",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic YWRtaW46c2VjcmV0",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Apfelstrudel\",\n  \"categoria\": \"Doce\",\n  \"pais\": \"Alemanha\",\n  \"ingredientes\": [\"maçã\", \"canela\", \"farinha\", \"manteiga\", \"açúcar\"],\n  \"tempoPreparo\": 65,\n  \"dificuldade\": \"Média\",\n  \"nota\": 4.9,\n  \"favorito\": true,\n  \"comentario\": \"Receita atualizada da Oma.\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/receitas/:id",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["receitas", ":id"]
+        }
+      }
+    },
+    {
+      "name": "Atualizar campo parcial",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic YWRtaW46c2VjcmV0",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"favorito\": true,\n  \"atualizadoEm\": \"2026-10-23T14:00:00.000Z\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/receitas/:id",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["receitas", ":id"]
+        }
+      }
+    },
+    {
+      "name": "Excluir receita",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic YWRtaW46c2VjcmV0",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/receitas/:id",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["receitas", ":id"]
+        }
+      }
+    }
+  ]
+}

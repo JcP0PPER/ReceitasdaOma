@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Receitas da Oma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand-wrap">
+        <div class="brand-mark">O</div>
+        <div>
+          <h1>Receitas da Oma</h1>
+          <small>Tradição alemã em Mafra, SC</small>
+        </div>
+      </div>
+
+      <nav class="main-nav" aria-label="Navegação principal">
+        <a href="#receitas">Receitas</a>
+        <a href="#painel">Painel</a>
+        <a href="#formulario">Adicionar receita</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-content">
+          <p class="eyebrow">Da Alemanha a Mafra, com amor</p>
+          <h2>A tradição alemã ganhou um lar <span>em Mafra.</span></h2>
+          <p class="hero-description">
+            Cozinhar é compartilhar histórias, memórias e sabores de família.
+            Aqui você encontra receitas clássicas da Alemanha com o carinho da Oma.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button primary" href="#receitas">Descubra as receitas</a>
+            <button class="button ghost" id="btn-importar">Importar receitas</button>
+          </div>
+
+          <div class="hero-meta">
+            <span class="flag" aria-label="Bandeira da Alemanha"></span>
+            <span>Deutschland</span>
+          </div>
+
+          <div id="status-message" class="status-message" aria-live="polite"></div>
+        </div>
+
+        <div class="hero-image">
+          <div class="image-frame">
+            <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/Apfelstrudel_with_whipped_cream.jpg/960px-Apfelstrudel_with_whipped_cream.jpg" alt="Apfelstrudel" />
+            <span class="image-caption">Aus Omas Küche · Da cozinha da Oma</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="toolbar" id="receitas" aria-label="Buscar e filtrar receitas">
+        <div class="search-box">
+          <label for="busca">Buscar receita</label>
+          <input id="busca" type="search" placeholder="Nome, categoria ou país (aceita erros de digitação)" />
+        </div>
+
+        <div class="search-box">
+          <label for="filtro-ingrediente">Ingrediente</label>
+          <input id="filtro-ingrediente" type="search" placeholder="Ex.: maçãs, canela..." />
+        </div>
+
+        <div class="filter-box">
+          <label for="filtro-categoria">Categoria</label>
+          <select id="filtro-categoria">
+            <option value="">Todas</option>
+          </select>
+        </div>
+
+        <div class="filter-box">
+          <label for="filtro-pais">País</label>
+          <select id="filtro-pais">
+            <option value="">Todos</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="recipes-layout">
+        <div class="recipes-panel">
+          <div id="lista-receitas" class="recipe-grid"></div>
+        </div>
+
+        <aside class="form-panel" id="formulario">
+          <h3 id="form-titulo">Adicionar receita</h3>
+
+          <form id="form-receita">
+            <div class="field-group">
+              <label for="nome">Nome</label>
+              <input id="nome" name="nome" type="text" required />
+            </div>
+
+            <div class="field-group">
+              <label for="categoria">Categoria</label>
+              <input id="categoria" name="categoria" type="text" required />
+            </div>
+
+            <div class="field-group">
+              <label for="pais">País</label>
+              <input id="pais" name="pais" type="text" required />
+            </div>
+
+            <div class="field-group">
+              <label for="ingredientes">Ingredientes</label>
+              <textarea id="ingredientes" name="ingredientes" rows="3" required></textarea>
+            </div>
+
+            <div class="field-group">
+              <label for="preparo">Modo de preparo</label>
+              <textarea id="preparo" name="preparo" rows="5" placeholder="Descreva o preparo passo a passo..." required></textarea>
+            </div>
+
+            <div class="field-group">
+              <label for="imagem">Foto da receita (URL, opcional)</label>
+              <input id="imagem" name="imagem" type="url" placeholder="https://..." />
+            </div>
+
+            <div class="field-row">
+              <div class="field-group">
+                <label for="tempoPreparo">Tempo (min)</label>
+                <input id="tempoPreparo" name="tempoPreparo" type="number" min="1" required />
+              </div>
+
+              <div class="field-group">
+                <label for="dificuldade">Dificuldade</label>
+                <select id="dificuldade" name="dificuldade">
+                  <option value="Fácil">Fácil</option>
+                  <option value="Média">Média</option>
+                  <option value="Difícil">Difícil</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field-group">
+                <label for="nota">Nota</label>
+                <input id="nota" name="nota" type="number" min="0" max="5" step="0.1" required />
+              </div>
+
+              <div class="field-group checkbox-wrap">
+                <label><input id="favorito" name="favorito" type="checkbox" /> Favorita</label>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="button primary">Salvar</button>
+              <button type="button" class="button ghost" id="btn-cancelar">Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="panel-section" id="painel">
+        <div class="section-heading">
+          <p class="eyebrow">Geração de informação</p>
+          <h3>Painel de receitas</h3>
+        </div>
+
+        <div class="metrics-grid" id="metricas"></div>
+
+        <div class="charts-grid">
+          <div class="chart-card">
+            <h4>Receitas por categoria</h4>
+            <canvas id="chartCategoria"></canvas>
+          </div>
+          <div class="chart-card">
+            <h4>Receitas por país</h4>
+            <canvas id="chartPais"></canvas>
+          </div>
+          <div class="chart-card">
+            <h4>Receitas mais vendidas</h4>
+            <p class="chart-note">Números demonstrativos para apresentação.</p>
+            <canvas id="chartVendas"></canvas>
+          </div>
+        </div>
+
+        <div class="ranking-wrap">
+          <div class="chart-card">
+            <h4>Top 5 receitas por vendas</h4>
+            <ol id="ranking-nota" class="ranking-list"></ol>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
